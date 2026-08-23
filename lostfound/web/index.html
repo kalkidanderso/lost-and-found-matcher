@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lost & Found — Campus Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-mark">L&amp;F</div>
+        <div>
+          <h1>Lost &amp; Found</h1>
+          <p>Campus desk, filed by hand</p>
+        </div>
+      </div>
+
+      <nav class="nav-main">
+        <a class="nav-item is-active" data-view="board">
+          <span class="nav-icon">◆</span>
+          <span>Matching board</span>
+          <span class="nav-badge" id="nav-strong">0</span>
+        </a>
+        <a class="nav-item" data-view="file">
+          <span class="nav-icon">✎</span>
+          <span>File a report</span>
+        </a>
+        <a class="nav-item" data-view="reports">
+          <span class="nav-icon">⊞</span>
+          <span>All reports</span>
+          <span class="nav-badge" id="nav-open">0</span>
+        </a>
+        <a class="nav-item" data-view="reunited">
+          <span class="nav-icon">✓</span>
+          <span>Reunited</span>
+          <span class="nav-badge" id="nav-reunited">0</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-stats">
+        <div class="stat-group">
+          <span class="stat-label">Open reports</span>
+          <span class="stat-value"><span id="stat-found">0</span> found · <span id="stat-lost">0</span> lost</span>
+        </div>
+        <div class="stat-group">
+          <span class="stat-label">Matches on the board</span>
+          <div class="band-counts">
+            <span><strong id="stat-strong">0</strong> strong</span>
+            <span><strong id="stat-possible">0</strong> possible</span>
+            <span><strong id="stat-weak">0</strong> weak</span>
+          </div>
+        </div>
+      </div>
+
+      <footer class="sidebar-footer">
+        <p><code>⌘1</code> board&nbsp; <code>⌘2</code> file&nbsp; <code>⌘3</code> reports</p>
+        <p class="footer-note">No database. No dependencies. Python 3.10+</p>
+      </footer>
+    </aside>
+
+    <main class="main-content">
+      <!-- BOARD -->
+      <section id="screen-board" class="screen is-active">
+        <div class="screen-header">
+          <span class="eyebrow">Desk log — today</span>
+          <h2>Potential matches</h2>
+          <p class="subtitle">Every open lost report, scored against every open found report. Best first.</p>
+          <div class="filters">
+            <button class="filter-band is-active" data-band="">All</button>
+            <button class="filter-band" data-band="strong">Strong</button>
+            <button class="filter-band" data-band="possible">Possible</button>
+            <button class="filter-band" data-band="weak">Weak</button>
+          </div>
+        </div>
+        <div id="board-matches" class="matches-grid"></div>
+      </section>
+
+      <!-- FILE REPORT -->
+      <section id="screen-file" class="screen">
+        <div class="screen-header">
+          <span class="eyebrow">New entry</span>
+          <h2>File a report</h2>
+          <p class="subtitle">Only the description is required. Everything else sharpens the match.</p>
+        </div>
+
+        <form id="report-form" class="card form" novalidate>
+          <div class="form-group">
+            <label>I'm reporting a</label>
+            <div class="segmented">
+              <label><input type="radio" name="kind" value="lost" checked> Lost item</label>
+              <label><input type="radio" name="kind" value="found"> Found item</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="description">What is it? <span class="req">required</span></label>
+            <textarea id="description" name="description" rows="3"
+              placeholder="Black backpack with a laptop charger, small tear on the front pocket" required></textarea>
+            <p class="hint">Write naturally. Colour, brand and any mark help most.</p>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="location">Where</label>
+              <input id="location" name="location" list="places" placeholder="Library">
+              <datalist id="places"></datalist>
+            </div>
+            <div class="form-group">
+              <label for="occurred_at">When</label>
+              <input id="occurred_at" name="occurred_at" type="datetime-local">
+              <p class="hint">Leave blank if unsure.</p>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="identifiers">Serial, IMEI or name on the item</label>
+              <input id="identifiers" name="identifiers" placeholder="356938035643809">
+              <p class="hint">The single most powerful field. Separate with commas.</p>
+            </div>
+            <div class="form-group">
+              <label for="contact">How to reach you</label>
+              <input id="contact" name="contact" placeholder="0912345678">
+              <p class="hint">Never shown publicly. Released only on a confirmed match.</p>
+            </div>
+          </div>
+
+          <div id="form-errors" class="form-errors"></div>
+
+          <button type="submit" class="btn btn-primary">Submit report</button>
+        </form>
+
+        <div id="result"></div>
+      </section>
+
+      <!-- REPORTS LIST -->
+      <section id="screen-reports" class="screen">
+        <div class="screen-header">
+          <span class="eyebrow">The ledger</span>
+          <h2>Open reports</h2>
+          <p class="subtitle">Search to see if your item is already on file.</p>
+          <input id="search-reports" type="search" class="search-box" placeholder="Search descriptions…">
+        </div>
+        <div id="reports-list" class="reports-grid"></div>
+      </section>
+
+      <!-- REUNITED -->
+      <section id="screen-reunited" class="screen">
+        <div class="screen-header">
+          <span class="eyebrow">Closed cases</span>
+          <h2>Reunited</h2>
+          <p class="subtitle">Confirmed matches. Contact details are released here, and only here.</p>
+        </div>
+        <div id="reunions-list" class="reunions-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- MODAL FOR REPORT MATCHES -->
+  <div id="modal" class="modal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="document.getElementById('modal').style.display='none'"
+        aria-label="Close">×</button>
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+
+</html>

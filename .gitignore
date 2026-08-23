@@ -1,0 +1,14 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# SQLite local databases
+*.db
+*.db-shm
+*.db-wal
+
+# OS / Editor
+.DS_Store
+.vscode/
+.idea/

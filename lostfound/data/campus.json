@@ -1,0 +1,27 @@
+{
+  "_comment": "A campus is a graph of places, but for a single site a flat metre grid is enough and far easier for staff to edit. Coordinates are approximate walking-plane metres from the main gate. Swap this file to deploy at another university; no code changes.",
+  "unit": "metres",
+  "places": [
+    {"id": "main_gate", "name": "Main Gate", "x": 0, "y": 0, "aliases": ["main gate", "gate", "entrance gate", "front gate", "security gate"]},
+    {"id": "bus_stop", "name": "Bus Stop", "x": -40, "y": -30, "aliases": ["bus stop", "bus station", "shuttle stop", "taxi stop"]},
+    {"id": "parking_lot", "name": "Parking Lot", "x": 100, "y": -60, "aliases": ["parking lot", "parking", "car park", "parking area"]},
+    {"id": "admin_building", "name": "Administration Building", "x": 60, "y": 40, "aliases": ["admin building", "administration", "admin", "registrar", "registrar office"]},
+    {"id": "library", "name": "Library", "x": 200, "y": 120, "aliases": ["library", "main library", "reading room", "study hall", "study area"]},
+    {"id": "library_entrance", "name": "Library Entrance", "x": 215, "y": 130, "aliases": ["library entrance", "library door", "library gate", "library steps", "library lobby"]},
+    {"id": "cafeteria", "name": "Cafeteria", "x": 300, "y": 60, "aliases": ["cafeteria", "cafe", "canteen", "dining hall", "dining", "lunch room", "food court"]},
+    {"id": "coffee_shop", "name": "Coffee Shop", "x": 330, "y": 75, "aliases": ["coffee shop", "coffeeshop", "coffee", "barista", "juice bar", "kiosk"]},
+    {"id": "student_center", "name": "Student Center", "x": 320, "y": 100, "aliases": ["student center", "student centre", "student union", "common room", "lounge"]},
+    {"id": "bookstore", "name": "Bookstore", "x": 270, "y": 40, "aliases": ["bookstore", "book shop", "stationery shop", "campus shop"]},
+    {"id": "auditorium", "name": "Auditorium", "x": 250, "y": 180, "aliases": ["auditorium", "main hall", "assembly hall", "theatre", "theater"]},
+    {"id": "lecture_hall_a", "name": "Lecture Hall A", "x": 120, "y": 220, "aliases": ["lecture hall a", "hall a", "block a", "room a", "classroom a"]},
+    {"id": "lecture_hall_b", "name": "Lecture Hall B", "x": 160, "y": 250, "aliases": ["lecture hall b", "hall b", "block b", "room b", "classroom b"]},
+    {"id": "science_block", "name": "Science Block", "x": 60, "y": 260, "aliases": ["science block", "science building", "chemistry lab", "physics lab", "biology lab", "laboratory"]},
+    {"id": "computer_lab", "name": "Computer Lab", "x": 70, "y": 300, "aliases": ["computer lab", "computer center", "ict lab", "it lab", "lab 2"]},
+    {"id": "engineering_block", "name": "Engineering Block", "x": 30, "y": 320, "aliases": ["engineering block", "engineering building", "workshop", "drawing hall"]},
+    {"id": "clinic", "name": "Health Clinic", "x": 420, "y": 40, "aliases": ["clinic", "health center", "health centre", "infirmary", "first aid"]},
+    {"id": "gym", "name": "Gymnasium", "x": 450, "y": 300, "aliases": ["gym", "gymnasium", "fitness center", "sports hall", "basketball court"]},
+    {"id": "football_field", "name": "Football Field", "x": 520, "y": 380, "aliases": ["football field", "footballfield", "football pitch", "sports field", "stadium", "pitch", "soccer field"]},
+    {"id": "dorm_a", "name": "Dormitory A", "x": 600, "y": 120, "aliases": ["dorm a", "dormitory a", "hostel a", "residence a", "block 1"]},
+    {"id": "dorm_b", "name": "Dormitory B", "x": 640, "y": 180, "aliases": ["dorm b", "dormitory b", "hostel b", "residence b", "block 2"]}
+  ]
+}
