@@ -2,7 +2,7 @@
 
 > **Requirements:** Python 3.10+ (Zero external dependencies).
 
-## Quickstart — How to Run
+## Quickstart - How to Run
 
 ### 1. Launch Web UI & JSON API (Recommended)
 ```bash

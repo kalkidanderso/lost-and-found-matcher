@@ -228,5 +228,7 @@ def _int(value, default):
 
 
 def build_server(service, host="127.0.0.1", port=8000):
+    class ReusableServer(ThreadingHTTPServer):
+        allow_reuse_address = True
     handler = type("BoundHandler", (Handler,), {"service": service})
-    return ThreadingHTTPServer((host, port), handler)
+    return ReusableServer((host, port), handler)
