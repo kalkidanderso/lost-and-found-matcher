@@ -1,5 +1,28 @@
 # Lost & Found Matcher: Design and Decisions
 
+> **Requirements:** Python 3.10+ (Zero external dependencies).
+
+## Quickstart — How to Run
+
+### 1. Launch Web UI & JSON API (Recommended)
+```bash
+python3 -m lostfound serve --demo
+```
+Then open **[http://127.0.0.1:8000](http://127.0.0.1:8000)** in your web browser.
+
+### 2. Terminal Demo CLI
+To see scored match pairs with human explanations directly in your terminal:
+```bash
+python3 -m lostfound demo
+```
+
+### 3. Run Automated Unit Tests
+```bash
+python3 -m unittest discover -s tests -v
+```
+
+---
+
 ## The problem and the approach
 
 A university receives lost-item and found-item reports. Someone has to manually read through them and guess which ones might match. This service automates that guessing and explains its reasoning.
